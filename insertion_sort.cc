@@ -2,22 +2,24 @@
 #include <vector>
 
 void insertion_sort(std::vector<int>& a) {
-	for (int i = 1; i < (int)a.size(); ++i) {
-		int key = a[i], j = i - 1;
-		while (j >= 0 && a[j] < key) { // descenging < ; ascending >
-			a[j+1] = a[j];
+	for (size_t i = 1; i < a.size(); ++i) {
+		int j = i - 1;
+		while (a[j] < a[j+1] && j >= 0) {
+			std::swap(a[j], a[j+1]);
 			--j;
 		}
-		a[j+1] = key;
 	}
 }
 
 int main() {
-	std::vector<int> a = {23, 12, 1, 0, -100, 235, 235, 259, 2, 10, 50};	
+	std::ios::sync_with_stdio(false);
+	std::cin.tie(nullptr);
 	
+	std::vector<int> a = {2, 3, 2, 3, 2, 52, 2, 5, 0, 2, 3, 23, 25, 5};
 	insertion_sort(a);
 	for (auto& i : a) {
-		std::cout << i << " ";
+		std::cout << i << ' ';
 	}
 	std::cout << '\n';
 }
+
